@@ -1,10 +1,16 @@
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY as
-  | string
-  | undefined;
 const OPENAI_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
+export const STORAGE_KEY = "recipeai_openai_key";
+
+function getApiKey(): string {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored && stored.trim().length > 0) return stored.trim();
+  const env = import.meta.env.VITE_OPENAI_API_KEY as string | undefined;
+  return env?.trim() ?? "";
+}
+
 export function hasApiKey(): boolean {
-  return !!OPENAI_API_KEY && OPENAI_API_KEY.trim().length > 0;
+  return getApiKey().length > 0;
 }
 
 // Convert a File to base64 data URL string
@@ -36,7 +42,7 @@ async function callOpenAI(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
+      Authorization: `Bearer ${getApiKey()}`,
     },
     body: JSON.stringify({
       model: "gpt-4o",

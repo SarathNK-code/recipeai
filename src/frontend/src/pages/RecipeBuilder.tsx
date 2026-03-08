@@ -139,30 +139,6 @@ export function RecipeBuilder() {
         </div>
       </div>
 
-      {/* API key notice */}
-      {!hasApiKey() && (
-        <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border-b border-amber-200/80 px-4 py-4">
-          <div className="max-w-7xl mx-auto flex items-start sm:items-center gap-3 sm:gap-4">
-            <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center mt-0.5 sm:mt-0">
-              <AlertCircle className="w-5 h-5 text-amber-600" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-amber-900">
-                AI Features Disabled
-              </p>
-              <p className="text-sm text-amber-700 mt-0.5">
-                Add your OpenAI API key to enable AI recipe generation and photo
-                analysis. Set{" "}
-                <code className="font-mono bg-amber-100 border border-amber-200 text-amber-800 px-1.5 py-0.5 rounded text-xs font-medium">
-                  VITE_OPENAI_API_KEY
-                </code>{" "}
-                in your environment variables.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Main layout */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
